@@ -1,25 +1,26 @@
+# Std Python libraries
 import subprocess
 import sys
 
-# Function to install a package
+# Verify and install required packages
 def install_package(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
-# List of required packages
 required_packages = ["tkinter", "qrcode"]
 
-# Check and install missing packages
 for package in required_packages:
     try:
         __import__(package)
     except ImportError:
         install_package(package)
 
+# Required libraries
 import tkinter as tk
 from tkinter import messagebox
 import qrcode
 from PIL import Image, ImageTk
 
+# Generate the QR code
 def create_qr_code():
     texto_usuario = text_entry.get()
     mostrar = mostrar_var.get()
@@ -55,43 +56,44 @@ def create_qr_code():
         imagen_qr.save(f"{nombre_archivo}.png")
         messagebox.showinfo("Información", f"El código QR ha sido guardado como '{nombre_archivo}.png'.")
 
+# Enable/disable the PNG filename text box
 def toggle_filename_entry():
     if guardar_var.get():
         filename_entry.config(state='normal')
     else:
         filename_entry.config(state='disabled')
 
-# Configurar la ventana principal
+# Main window
 root = tk.Tk()
 root.title("Generador de Código QR")
 
-# Campo de texto para el ingreso del texto
+# Text box for the QR string
 text_label = tk.Label(root, text="Ingresa el texto para el código QR:")
 text_label.pack()
 text_entry = tk.Entry(root, width=50)
 text_entry.pack()
 
-# Checkbox para mostrar el QR
+# Check box: Show QR or not
 mostrar_var = tk.BooleanVar()
 mostrar_checkbox = tk.Checkbutton(root, text="Mostrar en pantalla", variable=mostrar_var)
 mostrar_checkbox.pack()
 
-# Checkbox para guardar el QR
+# Check box: Save QR PNG or not
 guardar_var = tk.BooleanVar()
 guardar_checkbox = tk.Checkbutton(root, text="Guardar como PNG", variable=guardar_var, command=toggle_filename_entry)
 guardar_checkbox.pack()
 
-# Campo de texto para el nombre del archivo (deshabilitado por defecto)
+# PNG filename text box (disabled by default)
 filename_entry = tk.Entry(root, width=30, state='disabled')
 filename_entry.pack()
 
-# Botón para crear el código QR
+# Create QR code button (make the magic happen)
 create_button = tk.Button(root, text="Create QR Code", command=create_qr_code)
 create_button.pack()
 
-# Etiqueta para mostrar la imagen del QR
+# Show QR image
 img_label = tk.Label(root)
 img_label.pack()
 
-# Iniciar el bucle de la interfaz gráfica
+# Mainloop
 root.mainloop()
