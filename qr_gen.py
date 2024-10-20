@@ -28,11 +28,11 @@ def create_qr_code():
     nombre_archivo = filename_entry.get()
 
     if not texto_usuario:
-        messagebox.showwarning("Advertencia", "Por favor ingresa un texto.")
+        messagebox.showwarning("Warning", "Please enter text.")
         return
 
     if guardar and not nombre_archivo:
-        messagebox.showwarning("Advertencia", "Por favor ingresa un nombre para el archivo.")
+        messagebox.showwarning("Warning", "Please enter filename.")
         return
 
     # Crear el código QR
@@ -54,7 +54,7 @@ def create_qr_code():
 
     if guardar:
         imagen_qr.save(f"{nombre_archivo}.png")
-        messagebox.showinfo("Información", f"El código QR ha sido guardado como '{nombre_archivo}.png'.")
+        messagebox.showinfo("Information", f"QR code has been saved as '{nombre_archivo}.png'.")
 
 # Enable/disable the PNG filename text box
 def toggle_filename_entry():
@@ -65,22 +65,22 @@ def toggle_filename_entry():
 
 # Main window
 root = tk.Tk()
-root.title("Generador de Código QR")
+root.title("QR Code Generator")
 
 # Text box for the QR string
-text_label = tk.Label(root, text="Ingresa el texto para el código QR:")
+text_label = tk.Label(root, text="Enter text for the QR code:")
 text_label.pack()
 text_entry = tk.Entry(root, width=50)
 text_entry.pack()
 
 # Check box: Show QR or not
 mostrar_var = tk.BooleanVar()
-mostrar_checkbox = tk.Checkbutton(root, text="Mostrar en pantalla", variable=mostrar_var)
+mostrar_checkbox = tk.Checkbutton(root, text="Show on screen", variable=mostrar_var)
 mostrar_checkbox.pack()
 
 # Check box: Save QR PNG or not
 guardar_var = tk.BooleanVar()
-guardar_checkbox = tk.Checkbutton(root, text="Guardar como PNG", variable=guardar_var, command=toggle_filename_entry)
+guardar_checkbox = tk.Checkbutton(root, text="Save as PNG", variable=guardar_var, command=toggle_filename_entry)
 guardar_checkbox.pack()
 
 # PNG filename text box (disabled by default)
