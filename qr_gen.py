@@ -69,21 +69,23 @@ def toggle_filename_entry():
 # Main window
 root = tk.Tk()
 root.title("QR Code Generator")
+root.geometry("400x300")
+root.configure(bg='lightblue')
 
 # Text box for the QR string
-text_label = tk.Label(root, text="Enter text for the QR code:")
+text_label = tk.Label(root, text="Enter text for the QR code:", bg='lightblue', font=('Arial', 12))
 text_label.pack()
 text_entry = tk.Entry(root, width=50)
 text_entry.pack()
 
 # Check box: Show QR or not
 show_var = tk.BooleanVar()
-show_checkbox = tk.Checkbutton(root, text="Show on screen", variable=show_var)
+show_checkbox = tk.Checkbutton(root, text="Show on screen", variable=show_var, bg='lightblue')
 show_checkbox.pack()
 
 # Check box: Save QR PNG or not
 save_var = tk.BooleanVar()
-save_checkbox = tk.Checkbutton(root, text="Save as PNG", variable=save_var, command=toggle_filename_entry)
+save_checkbox = tk.Checkbutton(root, text="Save as PNG", variable=save_var, command=toggle_filename_entry, bg='lightblue')
 save_checkbox.pack()
 
 # PNG filename text box (disabled by default)
@@ -91,11 +93,11 @@ filename_entry = tk.Entry(root, width=30, state='disabled')
 filename_entry.pack()
 
 # Create QR code button (make the magic happen)
-create_button = tk.Button(root, text="Create QR Code", command=create_qr_code)
+create_button = tk.Button(root, text="Create QR Code", command=create_qr_code, bg='blue', fg='white', font=('Arial', 12, 'bold'))
 create_button.pack()
 
 # Show QR image
-img_label = tk.Label(root)
+img_label = tk.Label(root, bg='lightblue')
 img_label.pack()
 
 # Mainloop
