@@ -6,7 +6,7 @@ import sys
 def install_package(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
-required_packages = ["tkinter", "qrcode"]
+required_packages = ["tkinter", "qrcode", "Pillow"]
 
 for package in required_packages:
     try:
